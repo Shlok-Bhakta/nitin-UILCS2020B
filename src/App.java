@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(new File("nitin.dat"));
+        Scanner scan = new Scanner(new File("nitinJUD.dat"));
         ArrayList<String> cats = new ArrayList<String>();
         ArrayList<String> dogs = new ArrayList<String>();
         ArrayList<String> allPeople = new ArrayList<String>();
@@ -52,11 +52,13 @@ public class App {
             String outputString = "";
             if(allPeopleTypes.get(i).equals("C")){
                 outputString+=allPeople.get(i);
-                outputString = outputString + " CAT ";
+                
                 for(int j = 0; j<cats.size(); j++){
-                    if(!(cats.get(j) == null)){
+                    if(!(cats.get(j) == "")){
+
+                        outputString = outputString + " CAT ";
                         outputString+=cats.get(j);
-                        cats.set(j, null);
+                        cats.set(j, "");
                         break;
                     }
                 }
@@ -65,13 +67,23 @@ public class App {
             }
             if(allPeopleTypes.get(i).equals("D")){
                 outputString+=allPeople.get(i);
-                outputString = outputString + " DOG ";
+                
                 for(int j = 0; j<dogs.size(); j++){
-                    if(!(dogs.get(j) == null)){
+                    if(!(dogs.get(j) == "")){
+
+                        outputString = outputString + " DOG ";
                         outputString+=dogs.get(j);
-                        dogs.set(j, null);
+                        dogs.set(j, "");
                         break;
                     }
+                }
+            }
+            if(outputString.equals(allPeople.get(i))){
+                if(allPeopleTypes.get(i).equals("C")){
+                    outputString+= " WAIT LIST CAT";
+                }
+                if(allPeopleTypes.get(i).equals("D")){
+                    outputString+=" WAIT LIST DOG";
                 }
             }
             System.out.println(outputString);
